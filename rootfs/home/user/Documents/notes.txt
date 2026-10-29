@@ -1,0 +1,27 @@
+Field notes
+===========
+
+Input
+  The input service parses three-byte PS/2 mouse packets and
+  forwards semantic deltas. Relative movement stays inside
+  the display bounds; arrow keys are a keyboard fallback.
+
+Absolute pointer
+  A virtio-tablet PCI device is discovered at boot. The
+  kernel maps its capability BARs, polls one event virtqueue
+  and routes normalized coordinates through input. QEMU now
+  tracks the host pointer without mouse capture.
+
+Rendering
+  Compose the whole scene into a private canvas, then present
+  once. Never draw wallpaper directly to the scanout: users
+  see every intermediate state as flicker.
+
+Interrupts under QEMU
+  SeaBIOS leaves LINT0 masked. The kernel enables x2APIC,
+  sets TPR to 0 and unmasks LINT0 in ExtINT mode so legacy
+  PIT and PS/2 IRQs arrive.
+
+Next experiment
+  Shared memory surfaces so apps can draw their own pixels,
+  then a window backing store to make full-screen frames fast.

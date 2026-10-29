@@ -1,0 +1,6 @@
+Aurora 0.7 architecture
+Kernel: memory, scheduling, IPC, protected syscalls.
+Init starts independent ring-3 ELF modules.
+Display, input, file and audio services communicate using IPC.
+Kernel and user ABI: version 4.
+Hardware backends still partly reside in the kernel.

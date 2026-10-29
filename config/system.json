@@ -1,0 +1,102 @@
+{
+  "layout_version": 1,
+  "abi_version": 4,
+  "programs": [
+    {
+      "name": "init",
+      "path": "system/servers/init.elf",
+      "source": "servers/init",
+      "grants": [
+        "spawn",
+        "inspect",
+        "service"
+      ],
+      "identity": "root"
+    },
+    {
+      "name": "authd",
+      "path": "system/servers/authd.elf",
+      "source": "servers/auth",
+      "grants": [
+        "service",
+        "session"
+      ],
+      "identity": "root"
+    },
+    {
+      "name": "display",
+      "path": "system/servers/display.elf",
+      "source": "servers/display",
+      "grants": [
+        "framebuffer",
+        "timer",
+        "service",
+        "audio"
+      ],
+      "identity": "root"
+    },
+    {
+      "name": "input",
+      "path": "system/drivers/input.elf",
+      "source": "servers/input",
+      "grants": [
+        "input",
+        "service"
+      ],
+      "identity": "root"
+    },
+    {
+      "name": "vfsd",
+      "path": "system/servers/vfsd.elf",
+      "source": "servers/vfs",
+      "grants": [
+        "service"
+      ],
+      "identity": "root"
+    },
+    {
+      "name": "audiod",
+      "path": "system/servers/audiod.elf",
+      "source": "servers/audio",
+      "grants": [
+        "audio_device",
+        "service",
+        "fs_read"
+      ],
+      "identity": "root"
+    },
+    {
+      "name": "files",
+      "path": "system/apps/files/app.elf",
+      "source": "apps/files",
+      "grants": [
+        "fs_read",
+        "fs_write",
+        "audio"
+      ],
+      "identity": "session"
+    },
+    {
+      "name": "taskmgr",
+      "path": "system/apps/taskmgr/app.elf",
+      "source": "apps/taskmgr",
+      "grants": [
+        "inspect",
+        "task_control"
+      ],
+      "identity": "session"
+    },
+    {
+      "name": "terminal",
+      "path": "system/apps/terminal/app.elf",
+      "source": "apps/terminal",
+      "grants": [
+        "fs_read",
+        "fs_write",
+        "inspect",
+        "audio"
+      ],
+      "identity": "session"
+    }
+  ]
+}

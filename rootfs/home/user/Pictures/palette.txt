@@ -1,0 +1,15 @@
+Aurora palette
+==============
+
+Canvas      #070B14   deep space
+Panel       #151E2C   window body
+PanelRaised #1D2739   title bar
+Accent      #4CE2AE   Aurora green
+AccentDim   #68A0B4   secondary data
+Text        #EEF4FF   primary text
+TextMuted   #8C9EB6   labels
+Warning     #EBD478   folder glyphs
+Danger      #EB686A   close control
+
+Use alpha 235-255 for body fills; never pure black on pure
+white.

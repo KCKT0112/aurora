@@ -1,0 +1,4 @@
+Aurora multiuser development session
+Accounts: root, user, guest. Each requires a password.
+Unix owner/group/mode permissions protect files.
+RAM file changes survive logout but reset on reboot.

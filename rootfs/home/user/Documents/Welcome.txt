@@ -1,0 +1,7 @@
+Welcome to Aurora
+
+This workspace belongs to your signed-in account.
+Use id or whoami in Terminal to inspect your identity.
+Use stat and chmod to inspect and change file permissions.
+Use logout or Settings to switch users.
+RAM changes reset on reboot. Use play in Terminal to listen to the WAV in Music.

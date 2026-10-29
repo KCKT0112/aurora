@@ -1,0 +1,159 @@
+/* Aurora v2 - long-mode interrupt/exception stubs. */
+.section .text
+.code64
+
+.extern interrupt_dispatch
+
+.macro ISR_NOERR number
+.global isr\number
+.type isr\number, @function
+isr\number:
+    pushq $0
+    pushq $\number
+    jmp isr_common
+.size isr\number, . - isr\number
+.endm
+
+.macro ISR_ERR number
+.global isr\number
+.type isr\number, @function
+isr\number:
+    pushq $\number
+    jmp isr_common
+.size isr\number, . - isr\number
+.endm
+
+ISR_NOERR 0
+ISR_NOERR 1
+ISR_NOERR 2
+ISR_NOERR 3
+ISR_NOERR 4
+ISR_NOERR 5
+ISR_NOERR 6
+ISR_NOERR 7
+ISR_ERR   8
+ISR_NOERR 9
+ISR_ERR   10
+ISR_ERR   11
+ISR_ERR   12
+ISR_ERR   13
+ISR_ERR   14
+ISR_NOERR 15
+ISR_NOERR 16
+ISR_ERR   17
+ISR_NOERR 18
+ISR_NOERR 19
+ISR_NOERR 20
+ISR_ERR   21
+ISR_NOERR 22
+ISR_NOERR 23
+ISR_NOERR 24
+ISR_NOERR 25
+ISR_NOERR 26
+ISR_NOERR 27
+ISR_NOERR 28
+ISR_ERR   29
+ISR_ERR   30
+ISR_NOERR 31
+
+ISR_NOERR 32
+ISR_NOERR 33
+ISR_NOERR 34
+ISR_NOERR 35
+ISR_NOERR 36
+ISR_NOERR 37
+ISR_NOERR 38
+ISR_NOERR 39
+ISR_NOERR 40
+ISR_NOERR 41
+ISR_NOERR 42
+ISR_NOERR 43
+ISR_NOERR 44
+ISR_NOERR 45
+ISR_NOERR 46
+ISR_NOERR 47
+
+ISR_NOERR 128
+
+isr_common:
+    pushq %r15
+    pushq %r14
+    pushq %r13
+    pushq %r12
+    pushq %r11
+    pushq %r10
+    pushq %r9
+    pushq %r8
+    pushq %rbp
+    pushq %rdi
+    pushq %rsi
+    pushq %rdx
+    pushq %rcx
+    pushq %rbx
+    pushq %rax
+
+    xorq %rax, %rax
+    movw %ds, %ax
+    pushq %rax
+    xorq %rax, %rax
+    movw %es, %ax
+    pushq %rax
+    xorq %rax, %rax
+    movw %fs, %ax
+    pushq %rax
+    xorq %rax, %rax
+    movw %gs, %ax
+    pushq %rax
+
+    movw $0x10, %ax
+    movw %ax, %ds
+    movw %ax, %es
+    movw %ax, %fs
+    movw %ax, %gs
+
+    movq %rsp, %rdi
+    andq $-16, %rsp
+    call interrupt_dispatch
+    movq %rax, %rsp
+
+    popq %rax
+    movw %ax, %gs
+    popq %rax
+    movw %ax, %fs
+    popq %rax
+    movw %ax, %es
+    popq %rax
+    movw %ax, %ds
+
+    popq %rax
+    popq %rbx
+    popq %rcx
+    popq %rdx
+    popq %rsi
+    popq %rdi
+    popq %rbp
+    popq %r8
+    popq %r9
+    popq %r10
+    popq %r11
+    popq %r12
+    popq %r13
+    popq %r14
+    popq %r15
+
+    addq $16, %rsp
+    iretq
+
+.section .rodata
+.align 8
+.global isr_stub_table
+.type isr_stub_table, @object
+isr_stub_table:
+    .quad isr0,  isr1,  isr2,  isr3,  isr4,  isr5,  isr6,  isr7
+    .quad isr8,  isr9,  isr10, isr11, isr12, isr13, isr14, isr15
+    .quad isr16, isr17, isr18, isr19, isr20, isr21, isr22, isr23
+    .quad isr24, isr25, isr26, isr27, isr28, isr29, isr30, isr31
+    .quad isr32, isr33, isr34, isr35, isr36, isr37, isr38, isr39
+    .quad isr40, isr41, isr42, isr43, isr44, isr45, isr46, isr47
+
+.section .note.GNU-stack, "", @progbits

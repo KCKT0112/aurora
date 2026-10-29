@@ -1,0 +1,4 @@
+Next: persistent storage, standard file descriptors and driver isolation.
+WAV PCM playback is available through audiod and AC97.
+Startup resolution is fixed; explicit mode change is optional.
+Kernel replacement currently requires a reboot.

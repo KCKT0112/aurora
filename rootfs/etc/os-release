@@ -1,0 +1,4 @@
+NAME=Aurora
+VERSION=0.8.0-dev
+ID=aurora
+ABI_VERSION=4

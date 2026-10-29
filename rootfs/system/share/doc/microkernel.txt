@@ -1,0 +1,4 @@
+Aurora follows a microkernel direction.
+Drivers will use revocable device and memory capabilities.
+Current grants are fixed per process by trusted boot policy.
+Arbitrary drivers and kernel live replacement are not supported.

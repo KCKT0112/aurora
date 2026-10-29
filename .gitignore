@@ -1,0 +1,26 @@
+build/
+out/
+__pycache__/
+.venv/
+*.ppm
+.DS_Store
+
+.local/
+
+# Local media is not part of the public source distribution.
+rootfs/home/*/Music/*
+!rootfs/home/*/Music/.gitkeep
+rootfs/root/Music/*
+!rootfs/root/Music/.gitkeep
+
+# Local credentials and emulator artifacts, wherever a custom output path places them.
+initial-passwords.txt
+accounts.json
+accounts.bin
+*.iso
+*.elf
+*.o
+*.d
+*.map
+*.sock
+*.log
